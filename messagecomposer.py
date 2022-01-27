@@ -1,3 +1,4 @@
+from discord.utils import cached_property
 import timehandler as timeh
 import config
 
@@ -47,12 +48,13 @@ def prettify(text: str, my_type="BLOCK"):
     return output_text
 
 
-def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target):
+def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, current_window):
     now = timeh.now()
     postfix = ""
     prefix = ""
     output = "[" + name + "] "
     approx = " "
+    window = ""
     if accuracy <= 0 or spawns > 6:
         approx = "~ "
         if accuracy <= -1 or spawns >= 10:
@@ -73,10 +75,14 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target):
             output += "%sin window until %s " % (approx, timeh.countdown(now, eta))
     if target:
         postfix += ".target"
-    return prefix + output + postfix + "\n"
+    
+    if current_window > 0:
+        window += "current cycle is %s" % current_window    
+    
+    return prefix + output + postfix + window +"\n"
 
 
-def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tags, window_start, window_end, accuracy, eta):
+def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tags, window_start, window_end, accuracy, eta, current_window, windows):
     output = "%s\n" % name
     output += "=" * len(name) + "\n\n"
     approx = ""
@@ -97,7 +103,11 @@ def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tag
         output += "{WINDOW OPEN}   [%s]\n" \
                   "{WINDOW CLOSE}  [%s]\n" \
                   % (window_start, window_end)
-
+    if len(windows) > 0:
+        output += "{CURRENT WINDOW} [%s]\n" \
+                  "{WINDOW CONFIG}  [%s]\n" \
+              % (current_window, windows)   
+    
     output += "{SIGNED TOD BY} [%s] %s\n" \
               "{SIGNED POP BY} [%s]\n" \
               "{ETA}           [%s]\n" \

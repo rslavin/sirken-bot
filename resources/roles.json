@@ -11,7 +11,8 @@
                 "target",
                 "users",
                 "roles",
-                "setrole"
+                "setrole",
+                "skip"
             ],
             "reload": [
                 "all"
@@ -27,7 +28,25 @@
                 "earthquake",
                 "target",
                 "users",
-                "roles"
+                "roles",
+                "skip"
+            ],
+            "reload": [
+                "all"
+            ]
+        },
+		"members": {
+            "command": [
+                "help",
+                "get",
+                "tod",
+                "watch",
+                "merbs",
+                "earthquake",
+                "target",
+                "users",
+                "roles",
+                "skip"
             ],
             "reload": [
                 "all"
@@ -42,7 +61,8 @@
                 "merbs",
                 "earthquake",
                 "target",
-                "users"
+                "users",
+                "skip"
             ]
         },
         "raid_leader": {
@@ -53,7 +73,8 @@
                 "watch",
                 "merbs",
                 "earthquake",
-                "target"
+                "target",
+                "skip"
             ]
         },
         "user": {
@@ -62,7 +83,8 @@
                 "get",
                 "tod",
                 "watch",
-                "merbs"
+                "merbs",
+                "skip"
             ]
         },
         "trialist": {

@@ -11,6 +11,7 @@
   [!merbs]        - List name and aliases of supported Merbs
   [!target]       - Set a merb target
   [!about]        - About Sirken Bot
+  [!skip]         - A Merb skipped is spawn cycle
 ```
 To see a specific help type !help command:
 ```

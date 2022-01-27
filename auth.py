@@ -4,7 +4,6 @@ from miracle import Acl
 import errors
 import messagecomposer
 
-
 class User:
 
     def __init__(self, discord_user, d_roles, b_roles, guilds):
