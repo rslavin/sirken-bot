@@ -164,6 +164,7 @@ class Merb:
         w_end_tz = timeh.change_naive_to_tz(self.window["end"], timezone)
 
         tz_print = "Timezone %s\n\n" % timezone
+        
         return tz_print + messagecomposer.detail(self.name,
                                                  tod_tz.strftime(self.d_print),
                                                  pop_tz.strftime(self.d_print),

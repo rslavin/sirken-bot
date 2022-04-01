@@ -35,23 +35,6 @@
                 "all"
             ]
         },
-		"members": {
-            "command": [
-                "help",
-                "get",
-                "tod",
-                "watch",
-                "merbs",
-                "earthquake",
-                "target",
-                "users",
-                "roles",
-                "skip"
-            ],
-            "reload": [
-                "all"
-            ]
-        },
         "moderator": {
             "command": [
                 "help",
