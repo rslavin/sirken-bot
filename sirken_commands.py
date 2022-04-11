@@ -56,6 +56,7 @@ class SirkenCommands:
             "setrole": self.cmd_set_role,
             "users": self.cmd_users,
             "echo": self.cmd_echo,
+            "skip": self.cmd_skip
         }
 
         func = cmd_list.get(self.lp.cmd, lambda: {"destination": self.input_author,
@@ -169,13 +170,30 @@ class SirkenCommands:
 
         # If there is a Merb
         if self.lp.merb_found:
+            #Check if its skip
+            if mode == "skip":
+                self.lp.merb_found.update_skip(timeh.now(), str(self.input_author))
+                self.merbs.save_timers()
+                output_date = timeh.change_tz(timeh.naive_to_tz( self.lp.merb_found.eta, "UTC"),
+                                              self.lp.timezone)
+                output_content = "[%s] skipped [%s]! Next cycle [%s] starts at: {%s %s} - %ssigned by %s" % \
+                                 (self.lp.merb_found.name,
+                                  self.lp.merb_found.current_window -1,
+                                  self.lp.merb_found.current_window,
+                                  output_date.strftime(config.DATE_FORMAT_PRINT),
+                                  self.lp.timezone,
+                                  approx_output,
+                                  self.input_author.name)
+
+              #  output_broadcast = self.get_broadcast_channels()
             # Check if we have a date
-            if self.lp.my_date:
+            elif self.lp.my_date:
                 # UPDATE THE TOD
                 if mode == "tod":
                     self.lp.merb_found.update_tod(self.lp.my_date, str(self.input_author), approx)
                 if mode == "pop":
                     self.lp.merb_found.update_pop(self.lp.my_date, str(self.input_author))
+          
                 # save merbs
                 self.merbs.save_timers()
                 output_date = timeh.change_tz(timeh.naive_to_tz(self.lp.my_date, "UTC"),
@@ -492,3 +510,10 @@ class SirkenCommands:
             if not self.input_channel.id == channel:
                 broadcast_channels.append(channel)
         return broadcast_channels
+    
+    ######################
+    # MERB SKIPPED UPDATE TIMERS
+    ######################
+    @auth.cmd("skip")
+    def cmd_skip(self):
+        return self.update_merb("skip")

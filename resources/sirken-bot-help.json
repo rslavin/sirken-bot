@@ -109,5 +109,16 @@
   "  {off}         - optional. if no merb is specified all alarms will be switched off",
   "",
   ".Examples: [!watch scout] :: [!watch lord bob 60] :: [!watch statue off] :: [!watch off]"
+ ],
+
+ "skip": [
+  "certain mobs have the possibility to skip a spawn cycle.",
+  "This command will update the merbs spawn timers",
+  "",
+  ".Syntax: !skip {Merb Name} ",
+  "",
+  "  {Merb Name}  - mandatory. merb full name or one of its alias - !merbs to list them",
+  "",
+  ".Examples: [!skip lodi] :: [:skip sf]"
  ]
 }

@@ -7,7 +7,7 @@ import messagecomposer
 
 # Class that define Merb info and a bunch of utilities
 class Merb:
-    def __init__(self, name, alias, respawn_time, plus_minus, recurring, tag, tod, pop,
+    def __init__(self, name, alias, respawn_time, plus_minus, recurring, windows, tag, tod, pop,
                  author_tod, author_pop, accuracy, target, date_rec, date_print):
 
         self.d_rec = date_rec
@@ -20,6 +20,13 @@ class Merb:
         self.respawn_time = respawn_time
         # Variance
         self.plus_minus = plus_minus
+        # Windows 
+        self.windows = windows;
+        # Current window
+        if len(self.windows) > 0:
+            self.current_window = 1;
+        else:
+            self.current_window = 0
         # If the spawn is recurring. (ex scout)
         self.recurring = recurring
         # Tag of the merb
@@ -47,9 +54,18 @@ class Merb:
         # Eta
         self.eta = self.get_eta()
 
-    def get_window(self, from_date):
-        w_start = from_date + datetime.timedelta(hours=self.respawn_time) - datetime.timedelta(hours=self.plus_minus)
-        w_end = from_date + datetime.timedelta(hours=self.respawn_time) + datetime.timedelta(hours=self.plus_minus)
+    def get_window(self, from_date, skipped = False):
+        if not skipped:
+            w_start = from_date + datetime.timedelta(hours=self.respawn_time) - datetime.timedelta(hours=self.plus_minus)
+            w_end = from_date + datetime.timedelta(hours=self.respawn_time) + datetime.timedelta(hours=self.plus_minus)
+        else :  
+            adjusted_eta = self.eta      
+            if self.current_window - 2 >= 0:
+                adjusted_eta = self.eta + datetime.timedelta(hours=self.windows[self.current_window - 2])
+                        
+            w_start = adjusted_eta + datetime.timedelta(hours=self.respawn_time) - datetime.timedelta(hours=self.windows[self.current_window -1])
+            w_end = adjusted_eta + datetime.timedelta(hours=self.respawn_time) + datetime.timedelta(hours=self.windows[self.current_window -1])
+            
         return {"start": w_start, "end": w_end}
 
     def update_tod(self, new_tod, author, approx=1):
@@ -59,12 +75,31 @@ class Merb:
         self.window = self.get_window(new_tod)
         self.eta = self.get_eta()
         self.target = False
+        if( len(self.windows) > 0 ): 
+            self.plus_minus = self.windows[0]
+            self.current_window = 1;
 
+   
     def update_pop(self, new_pop, author):
         self.pop = new_pop
         self.signed_pop = author
         self.window = self.get_window(new_pop)
         self.eta = self.get_eta()
+        if( len(self.windows) > 0 ): 
+            self.plus_minus = self.windows[0]
+            self.current_window = 1;
+
+    def update_skip(self, skipTime, author):
+        if(len(self.windows) > 0 and self.current_window + 1 <= len(self.windows)):
+            self.signed_tod = author
+            self.window = self.get_window(skipTime, True)
+            self.eta = self.get_eta()
+            self.target = False
+            self.plus_minus = self.windows[self.current_window]
+            self.current_window = self.current_window + 1;
+        else:
+            return {"Trying to skip last cycle"}
+
 
     def get_eta(self, virtual_tod=None):
         eta = datetime.datetime.strptime(config.DATE_DEFAULT,config.DATE_FORMAT)
@@ -113,7 +148,7 @@ class Merb:
     def print_short_info(self):
         self.eta = self.get_eta()
         return messagecomposer.time_remaining(self.name, self.eta, self.plus_minus, self.window,
-                                              self.spawns, self.accuracy, self.target)
+                                              self.spawns, self.accuracy, self.target, self.current_window)
 
     def print_long_info(self, timezone):
         self.eta = self.get_eta()
@@ -129,7 +164,7 @@ class Merb:
         w_end_tz = timeh.change_naive_to_tz(self.window["end"], timezone)
 
         tz_print = "Timezone %s\n\n" % timezone
-
+        
         return tz_print + messagecomposer.detail(self.name,
                                                  tod_tz.strftime(self.d_print),
                                                  pop_tz.strftime(self.d_print),
@@ -141,7 +176,9 @@ class Merb:
                                                  w_start_tz.strftime(self.d_print),
                                                  w_end_tz.strftime(self.d_print),
                                                  self.accuracy,
-                                                 eta
+                                                 eta,
+                                                 self.current_window,
+                                                 self.windows
                                                  )
 
     def print_meta(self):
@@ -209,11 +246,16 @@ class MerbList:
                 target = True
             else:
                 target = False
+            if("windows" in json_entities[i]):
+                windows = json_entities[i]["windows"]
+            else:
+                windows = [];    
             self.merbs.append(Merb(i,
                                    json_entities[i]["alias"],
                                    json_entities[i]["respawn_time"],
                                    json_entities[i]["plus_minus"],
                                    json_entities[i]["recurring"],
+                                   windows,
                                    json_entities[i]["tag"],
                                    tod,
                                    pop,

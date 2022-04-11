@@ -97,7 +97,10 @@ if __name__ == "__main__":
 
     # Initialize the Bot
     t_start = timer()
-    client = commands.Bot(command_prefix="!")  # Initialise client bot
+    intents = discord.Intents.default()
+    intents.members = True
+
+    client = commands.Bot(command_prefix="!",  intents=intents)  # Initialise client bot
     t_end = timer()
     logger_sirken.info("Loading Bot. Done in (%s)" % (round(t_end-t_start, 5)))
 
