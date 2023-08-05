@@ -66,7 +66,7 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, curr
             output += "%swill spawn in %s" % (approx, timeh.countdown(now, eta))
     else:
         if now > window['end']:
-            output += "window is close. Please update ToD if u have a chance! "
+            output += "window is closed. Please update ToD if u have a chance! "
         elif now < window['start']:
             output += "%swindow will open in %s " % (approx, timeh.countdown(now, eta))
         elif window['start'] <= now <= window['end']:
