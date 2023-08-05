@@ -1,4 +1,5 @@
 config.py
-resources/roles.json
-resources/timers.json
 resources/watch.json
+resources/timers.json
+resources/roles.json
+logs/*
