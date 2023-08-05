@@ -49,3 +49,6 @@ LOGS_PATH_DIR = "logs/"
 
 LOG_FILE = LOGS_PATH_DIR + "sirken-bot.log"
 LOG_INPUT_FILE = LOGS_PATH_DIR + "input.log"
+
+# Discord administrator
+CLIENT_ID_OWNER = [123456789012345678,]

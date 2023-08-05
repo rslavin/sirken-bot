@@ -1,7 +1,4 @@
 config.py
 resources/roles.json
-resources/targets.json
-resources/entities.json
 resources/timers.json
 resources/watch.json
-logs/

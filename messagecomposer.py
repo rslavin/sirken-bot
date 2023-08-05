@@ -54,7 +54,7 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, curr
     prefix = ""
     output = "[" + name + "] "
     approx = " "
-    window = ""
+    window_str = ""
     if accuracy <= 0 or spawns > 6:
         approx = "~ "
         if accuracy <= -1 or spawns >= 10:
@@ -77,9 +77,9 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, curr
         postfix += ".target"
     
     if current_window > 0:
-        window += "current cycle is %s" % current_window    
+        window_str += "current cycle is %s" % current_window    
     
-    return prefix + output + postfix + window +"\n"
+    return prefix + output + postfix + window_str +"\n"
 
 
 def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tags, window_start, window_end, accuracy, eta, current_window, windows):
