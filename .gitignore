@@ -2,4 +2,4 @@ config.py
 resources/watch.json
 resources/timers.json
 resources/roles.json
-logs/*
+logs/

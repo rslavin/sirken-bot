@@ -1,4 +1,22 @@
 {
+  "Debug Mob": {
+    "alias": [
+      "debug"
+    ],
+    "respawn_time": 1,
+    "plus_minus": 0,
+    "recurring": 1,
+    "tag": []
+  },
+  "Sebilite protector": {
+    "alias": [
+      "prot"
+    ],
+    "respawn_time": 2.75,
+    "plus_minus": 0,
+    "recurring": 1,
+    "tag": []
+  },
   "A shady goblin": {
     "alias": [
       "shady goblin",
@@ -6,8 +24,10 @@
     ],
     "respawn_time": 24,
     "plus_minus": 0,
-    "recurring": 0,
-    "tag": []
+    "recurring": 1,
+    "tag": [
+      "swc"
+    ]
   },
   "Vessel Drozlin": {
     "alias": [
@@ -18,7 +38,7 @@
     "recurring": 0,
     "tag": []
   },
-  "Sontalek": {
+  "Sontalak": {
     "alias": [],
     "respawn_time": 168,
     "plus_minus": 16,
@@ -32,7 +52,9 @@
     "respawn_time": 8,
     "plus_minus": 0,
     "recurring": 0,
-    "tag": []
+    "tag": [
+      "vpkey"
+    ]
   },
   "a broken golem": {
     "alias": [
@@ -53,29 +75,7 @@
     "plus_minus": 0,
     "recurring": 0,
     "tag": [
-      "Fear"
-    ]
-  },
-  "Avatar of Abhorrence": {
-    "alias": [
-        "Abhorrence"
-    ],
-    "respawn_time": 72,
-    "plus_minus": 12,
-    "recurring": 0,
-    "tag": [
-      "Hate"
-    ]
-  },
-  "Coercer T'vala": {
-    "alias": [
-      "Coercer"
-    ],
-    "respawn_time": 72,
-    "plus_minus": 12,
-    "recurring": 0,
-    "tag": [
-      "Hate"
+      "vpkey"
     ]
   },
   "Derakor the Vindicator": {
@@ -87,11 +87,11 @@
     "plus_minus": 1,
     "recurring": 0,
     "tag": [
-      "Kael"]
+      "Kael"
+    ]
   },
   "Dread": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 72,
     "plus_minus": 8,
     "recurring": 0,
@@ -100,8 +100,7 @@
     ]
   },
   "Fright": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 72,
     "plus_minus": 8,
     "recurring": 0,
@@ -116,7 +115,9 @@
     "respawn_time": 8,
     "plus_minus": 0,
     "recurring": 0,
-    "tag": []
+    "tag": [
+      "vpkey"
+    ]
   },
   "Ground spawn Swamp of No Hope (VP Key)": {
     "alias": [
@@ -125,7 +126,9 @@
     "respawn_time": 8,
     "plus_minus": 0,
     "recurring": 0,
-    "tag": []
+    "tag": [
+      "vpkey"
+    ]
   },
   "Keldor Dek'Torek": {
     "alias": [
@@ -134,7 +137,7 @@
     ],
     "respawn_time": 18,
     "plus_minus": 0,
-    "recurring": 0,
+    "recurring": 1,
     "tag": [
       "Kael"
     ]
@@ -145,7 +148,7 @@
     ],
     "respawn_time": 8,
     "plus_minus": 0,
-    "recurring": 0,
+    "recurring": 1,
     "tag": []
   },
   "Lodizal": {
@@ -155,18 +158,7 @@
     "respawn_time": 18,
     "plus_minus": 1,
     "recurring": 0,
-    "tag": [],
-    "windows": [1, 2, 3]
-  },
-  "Stormfeather": {
-    "alias": [
-      "sf"
-    ],
-    "respawn_time": 18,
-    "plus_minus": 1,
-    "recurring": 0,
-    "tag": [],
-    "windows": [1, 2, 3, 4]
+    "tag": []
   },
   "Lord Doljonijiarnimorinar": {
     "alias": [
@@ -176,27 +168,6 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": []
-  },
-  "Lord of Ire": {
-    "alias": [
-    ],
-    "respawn_time": 72,
-    "plus_minus": 12,
-    "recurring": 0,
-    "tag": [
-      "Hate"
-    ]
-  },
-  "Lord of Loathing": {
-    "alias": [
-      "Loathing"
-    ],
-    "respawn_time": 72,
-    "plus_minus": 12,
-    "recurring": 0,
-    "tag": [
-      "Hate"
-    ]
   },
   "Maestro of Rancor": {
     "alias": [
@@ -209,29 +180,9 @@
       "Hate"
     ]
   },
-  "Magi P'Tasa": {
-    "alias": [
-      "Magi"
-    ],
-    "respawn_time": 72,
-    "plus_minus": 12,
-    "recurring": 0,
-    "tag": [
-      "Hate"
-    ]
-  },
-  "Master of Spite": {
-    "alias": [
-    ],
-    "respawn_time": 72,
-    "plus_minus": 12,
-    "recurring": 0,
-    "tag": [
-      "Hate"
-    ]
-  },
   "Master of the Guard": {
     "alias": [
+      "MoTG"
     ],
     "respawn_time": 72,
     "plus_minus": 12,
@@ -249,20 +200,9 @@
     "recurring": 0,
     "tag": []
   },
-  "Mistress of Scorn": {
-    "alias": [
-      "Mistress"
-    ],
-    "respawn_time": 72,
-    "plus_minus": 12,
-    "recurring": 0,
-    "tag": [
-      "Hate"
-    ]
-  },
   "Phinigel Autropos": {
     "alias": [
-      "Phinigel",
+      "Phinny",
       "Phini"
     ],
     "respawn_time": 12,
@@ -272,10 +212,11 @@
   },
   "Sentry Badain": {
     "alias": [
-      "Badain"
+      "Badain",
+      "ringwar"
     ],
-    "respawn_time": 72,
-    "plus_minus": 8,
+    "respawn_time": 72.5,
+    "plus_minus": 0,
     "recurring": 0,
     "tag": []
   },
@@ -292,6 +233,7 @@
   },
   "Stomples": {
     "alias": [
+      "Sniffles"
     ],
     "respawn_time": 72,
     "plus_minus": 0,
@@ -299,8 +241,7 @@
     "tag": []
   },
   "Terror": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 72,
     "plus_minus": 8,
     "recurring": 0,
@@ -310,7 +251,8 @@
   },
   "The Final Arbiter": {
     "alias": [
-      "Arbiter"
+      "Arbiter",
+      "TFA"
     ],
     "respawn_time": 72,
     "plus_minus": 12,
@@ -332,7 +274,8 @@
   },
   "Velketor the Sorcerer": {
     "alias": [
-      "Velketor"
+      "Velketor",
+      "Velk"
     ],
     "respawn_time": 72,
     "plus_minus": 8,
@@ -359,8 +302,10 @@
     "alias": [],
     "respawn_time": 24,
     "plus_minus": 0,
-    "recurring": 0,
-    "tag": []
+    "recurring": 1,
+    "tag": [
+      "DN"
+    ]
   },
   "Wraith of a Shissir": {
     "alias": [
@@ -374,42 +319,47 @@
     ]
   },
   "Zlandicar": {
-    "alias": [],
+    "alias": [
+      "Zlandi"
+    ],
     "respawn_time": 108,
-    "plus_minus": 8,
+    "plus_minus": 12,
     "recurring": 0,
-    "tag": []
+    "tag": [
+      "DN"
+    ]
   },
   "Zordak Ragefire": {
     "alias": [
       "Zordak",
       "Ragefire"
     ],
-    "respawn_time": 36,
-    "plus_minus": 36,
+    "respawn_time": 24,
+    "plus_minus": 8,
     "recurring": 0,
     "tag": []
   },
   "Aaryonar": {
     "alias": [
-        "Aary"
+      "Aary"
     ],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Cekenar": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
       "Triplets",
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Dagarn the Destroyer": {
@@ -420,17 +370,21 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Dozekar the Cursed": {
     "alias": [
-      "Dozekar"
+      "Dozeker",
+      "Doze"
     ],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
-    "tag": []
+    "tag": [
+      "ToV"
+    ]
   },
   "Dracoliche": {
     "alias": [
@@ -444,8 +398,7 @@
     ]
   },
   "Druushk": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
@@ -461,11 +414,14 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Faydedar": {
-    "alias": [],
+    "alias": [
+      "fay"
+    ],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
@@ -473,12 +429,14 @@
   },
   "Gozzrem": {
     "alias": [
+      "gozz"
     ],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "WToV"
+      "WToV",
+      "ToV"
     ]
   },
   "Hoshkar": {
@@ -500,33 +458,24 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
-    ]
-  },
-  "Innoruk": {
-    "alias": [
-
-    ],
-    "respawn_time": 168,
-    "plus_minus": 8,
-    "recurring": 0,
-    "tag": [
-      "Hate"
+      "NToV",
+      "ToV"
     ]
   },
   "Jorlleag": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Kelorek'Dar": {
     "alias": [
-      "Kelorek"
+      "Kelorek",
+      "CS Dragon"
     ],
     "respawn_time": 168,
     "plus_minus": 8,
@@ -535,24 +484,28 @@
   },
   "Lady Mirenilla": {
     "alias": [
-      "Mirenilla"
+      "Mirenilla",
+      "Lady M"
     ],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Lady Nevederia": {
     "alias": [
-      "Nevederia"
+      "Nevederia",
+      "Lady N"
     ],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Lady Vox": {
@@ -573,7 +526,8 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "WToV"
+      "WToV",
+      "ToV"
     ]
   },
   "Lord Feshlak": {
@@ -584,7 +538,8 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Lord Koi'Doken": {
@@ -595,7 +550,8 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Lord Kreizenn": {
@@ -606,7 +562,8 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Lord Nagafen": {
@@ -627,13 +584,12 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Nexona": {
-    "alias": [
-
-    ],
+    "alias": [],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
@@ -653,14 +609,14 @@
     ]
   },
   "Sevalak": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
       "Triplets",
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Severilous": {
@@ -679,12 +635,14 @@
   },
   "Telkorenar": {
     "alias": [
+      "Telk"
     ],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "WToV"
+      "WToV",
+      "ToV"
     ]
   },
   "Wuoshi": {
@@ -695,8 +653,7 @@
     "tag": []
   },
   "Xygoz": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
@@ -713,7 +670,8 @@
     "recurring": 0,
     "tag": [
       "Triplets",
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Gorenaire": {
@@ -748,8 +706,7 @@
     "tag": []
   },
   "Silverwing": {
-    "alias": [
-    ],
+    "alias": [],
     "respawn_time": 168,
     "plus_minus": 8,
     "recurring": 0,
@@ -794,7 +751,8 @@
     "plus_minus": 8,
     "recurring": 0,
     "tag": [
-      "NToV"
+      "NToV",
+      "ToV"
     ]
   },
   "Klandicar": {
@@ -804,10 +762,20 @@
     "recurring": 0,
     "tag": []
   },
-  "Noble Dojorn": {
+  "Noble Dojorn (3 day)": {
     "alias": [
-      "Dojorn",
-      "Noble"
+      "Dojorn3",
+      "Noble3"
+    ],
+    "respawn_time": 72,
+    "plus_minus": 0,
+    "recurring": 0,
+    "tag": []
+  },
+  "Noble Dojorn (7 day)": {
+    "alias": [
+      "Dojorn7",
+      "Noble7"
     ],
     "respawn_time": 168,
     "plus_minus": 0,
@@ -829,7 +797,9 @@
     "tag": []
   },
   "Trakanon": {
-    "alias": [],
+    "alias": [
+      "Trak"
+    ],
     "respawn_time": 72,
     "plus_minus": 8,
     "recurring": 0,
@@ -849,12 +819,174 @@
   "Guardian Kozzalym": {
     "alias": [
       "Kozzalym",
-      "Kozz"
+      "kozz"
     ],
     "respawn_time": 120,
     "plus_minus": 0,
     "recurring": 1,
     "tag": []
+  },
+  "Ayillish": {
+    "alias": [],
+    "respawn_time": 8,
+    "plus_minus": 0,
+    "recurring": 0,
+    "tag": []
+  },
+  "Drusella Sathir": {
+    "alias": [
+      "Drusella"
+    ],
+    "respawn_time": 24,
+    "plus_minus": 0,
+    "recurring": 1,
+    "tag": [
+      "swc"
+    ]
+  },
+  "Stormfeather": {
+    "alias": [
+      "Stormfeather"
+    ],
+    "respawn_time": 18,
+    "plus_minus": 1,
+    "recurring": 0,
+    "tag": []
+  },
+  "A White Stallion": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": []
+  },
+  "An angry goblin": {
+    "alias": [
+      "angry"
+    ],
+    "respawn_time": 75.5,
+    "plus_minus": 3.5,
+    "recurring": 0,
+    "tag": [
+      "swc"
+    ]
+  },
+  "Casalen": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Essedera": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Grozzmel": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Hadden": {
+    "alias": [],
+    "respawn_time": 5.5,
+    "plus_minus": 0.5,
+    "recurring": 0,
+    "tag": []
+  },
+  "Innoruuk": {
+    "alias": [
+      "Inny"
+    ],
+    "respawn_time": 168,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "Hate"
+    ]
+  },
+  "Krigara": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Lepethida": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Lithiniath": {
+    "alias": [
+      "Lithin"
+    ],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": []
+  },
+  "Midayor": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Tavekalem": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Ymmeln": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 8,
+    "recurring": 0,
+    "tag": [
+      "hot"
+    ]
+  },
+  "Book of Souls": {
+    "alias": [],
+    "respawn_time": 10,
+    "plus_minus": 0,
+    "recurring": 0,
+    "tag": [
+      "Hate"
+    ]
+  },
+  "Hate Minibosses": {
+    "alias": [],
+    "respawn_time": 72,
+    "plus_minus": 12,
+    "recurring": 0,
+    "tag": [
+      "Hate"
+    ]
   },
   "Vaniki1 (Lake)": {
     "alias": [
@@ -880,7 +1012,8 @@
   },
   "Vaniki3 (City Ladder)": {
     "alias": [
-      "vaniki3" 
+      "vaniki3",
+      "vanikiladder"
     ],
     "respawn_time": 122,
     "plus_minus": 0,
@@ -891,7 +1024,9 @@
   },
   "Vaniki4 (City Center)": {
     "alias": [
-      "vaniki4" 
+      "vaniki4",
+      "vanikicenter",
+      "vanikicentre"
     ],
     "respawn_time": 122,
     "plus_minus": 0,
@@ -902,7 +1037,8 @@
   },
   "Vaniki5 (City Back)": {
     "alias": [
-      "vaniki5" 
+      "vaniki5",
+      "vanikiback"
     ],
     "respawn_time": 122,
     "plus_minus": 0,
@@ -910,13 +1046,6 @@
     "tag": [
       "Vaniki" 
     ]
-  },
-  "Ayillish": {
-    "alias": [],
-    "respawn_time": 8,
-    "plus_minus": 0,
-    "recurring": 0,
-    "tag": []
   },
   "Lich of Miragul": {
     "alias": [
@@ -937,5 +1066,4 @@
     "recurring": 0,
     "tag": []
   }
-
 }
