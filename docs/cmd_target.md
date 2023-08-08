@@ -1,9 +1,9 @@
 -
 **!TARGET**
 -
-Lets kill Lord Bob!
+Let's kill Lord Bob!
 ```
-!target merb_name
+!target mob_name
 ```
 Losing interest in Lord Bob
 ```

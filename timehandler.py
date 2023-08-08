@@ -45,7 +45,6 @@ def convert24(time, meridian):
 
 
 def assemble_date(time_in, date_in, timezone='CET', days_back=0):
-
     # time is mandatory
     if not time_in:
         return False
@@ -54,19 +53,19 @@ def assemble_date(time_in, date_in, timezone='CET', days_back=0):
     try:
         # if both date and time are provided simply generate the date...
         date_assembled = datetime.datetime(year=date_in['year'],
-                                     month=date_in['month'],
-                                     day=date_in['day'],
-                                     hour=time_in['hour'],
-                                     minute=time_in['minute'])
+                                           month=date_in['month'],
+                                           day=date_in['day'],
+                                           hour=time_in['hour'],
+                                           minute=time_in['minute'])
         # ...and attach the timezone on it
         local_date = naive_to_tz(date_assembled, timezone)
     except:
         # if only time is provided, build it starting from local now
         date_now = now_local(timezone)
         local_date = date_now.replace(hour=time_in['hour'],
-                                                      minute=time_in['minute'],
-                                                      second=0,
-                                                      microsecond=0)
+                                      minute=time_in['minute'],
+                                      second=0,
+                                      microsecond=0)
         # if date is in the future, use yesterday
         if local_date > date_now:
             days_back = 1
@@ -102,7 +101,7 @@ def countdown(d_to, d_from):
     date_diff = d_from - d_to
     seconds_diff = date_diff.total_seconds()
     days = int(seconds_diff // (60 * 60 * 24))
-    hours = int((seconds_diff - days*86400) // (60 * 60))
+    hours = int((seconds_diff - days * 86400) // (60 * 60))
     minutes = int((seconds_diff // 60) % 60)
     if days == 1:
         output += "1 day "

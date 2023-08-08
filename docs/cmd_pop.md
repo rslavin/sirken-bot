@@ -1,10 +1,10 @@
 -
-**!POD**
+**!POP**
 -
-This command updates pop time. Use it when not sure about the tod.
-Pop times are used to calculate eta only if newer than ToD
+This command updates pop time. Use it when not sure about the ToD.
+Pop times are used to calculate eta only if newer than ToD.
 -
-Simplest way to update a merb (to current date)
+Simplest way to update a mob (to current date)
 ```
 !pop Lord Bob now
 ```
@@ -12,7 +12,7 @@ Updates some minutes ago
 ```
 !pop Lord Bob 10 minutes ago
 ```
-Updates to a specified time. If time is in the future, yesterday is assumed
+Updates to a specified time. If time is in the future, yesterday is assumed.
 ```
 !pop Lord Bob 14:01
 ```

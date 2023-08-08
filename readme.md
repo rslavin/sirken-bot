@@ -1,48 +1,48 @@
 # Sirken Bot
 ###### They say I give *respawn times*.
 
-Interactive discord bot who stores and updates times of death, pops and watch merbs and their eta
+Interactive discord bot who stores and updates times of death, pops and watch mobs and their eta
 
 ### LIST OF COMMANDS
 ```
   [!help]         - Show the help
-  [!get]          - Show the status of a Merb
-  [!tod]          - Update the ToD of a Merb
-  [!pop]          - A Merb is popped
+  [!get]          - Show the status of a mob 
+  [!tod]          - Update the ToD of a mob
+  [!pop]          - A mob is popped
   [!earthquake]   - omg omg omg (be careful, will reset all pop date/time!)
-  [!watch]        - Keep an eye on your merbs
-  [!merbs]        - List name and aliases of supported Merbs
+  [!watch]        - Keep an eye on your mobs
+  [!mobs]        - List name and aliases of supported mobs
   [!about]        - About Sirken Bot
 ```
 
 ### !get
-Print all merbs due to spawn:
+Print all mobs due to spawn:
 ```
 !get all
 ```
-Print all merbs in window
+Print all mobs in window
 ```
 !get windows
 ```
-Print all merbs of the specified tag
+Print all mobs of the specified tag
 ```
 !get ntov
  ```            
- Get a specified merb
+ Get a specified mob
  ```
 !get Lord Bob
 ```
-Get more info about a specified merb
+Get more info about a specified mob
 ```
 !get Lord Bob info
 ```
 
 ### !tod & !pop
-With these commands you will update respectively time of death and pop time of a single merb.
-Pop times are used to calculate merb eta only if newer than tod.
+With these commands you will update respectively time of death and pop time of a single mob.
+Pop times are used to calculate mob eta only if newer than tod.
 Both commands share the same syntax.
 
-Simplest way to update a merb (to current date)
+Simplest way to update a mob (to current date)
 ```
 !tod Lord Bob now
 ```
@@ -75,7 +75,7 @@ Full date/time
 ```
 
 ### !earthquake
-Updates all merbs pop times to the specified time. the time format is the same used for !tod and !pop
+Updates all mobs pop times to the specified time. the time format is the same used for !tod and !pop
 ```
 !earthquake now
 ```
@@ -84,13 +84,13 @@ Updates all merbs pop times to the specified time. the time format is the same u
 ```
 
 ### !watch
-Keep a look on your merbs and be alerted before their spawns/window opens.
+Keep a look on your mobs and be alerted before their spawns/window opens.
 
-Print all watched merbs
+Print all watched mobs
 ```
 !watch
 ```
-Watch a specified merb and be alerted 30minutes before his eta
+Watch a specified mob and be alerted 30minutes before his eta
 ```
 !watch Lord Bob
 ```
@@ -107,13 +107,21 @@ Switch off all watchers
 !watch off
 ```
 
-### !merbs
-Prints privately a crude list of merbs/alias/tags
+### !mobs
+Prints privately a crude list of mobs/alias/tags
 ```
-!merbs
+!mobs
 ```
 
 ### RELEASES
+
+##### 0.9.0
+```
+- Switched to semantic versioning
+- Added more p99 mobs and corrected some timers
+- Updated several typos and messages
+```
+
 ##### 0.8 aka Paranoid Android
 ```
 - Added a RBAC: Now Sirken will parse discord servers roles converting them to bot roles. That means if you dont have
@@ -122,7 +130,7 @@ Prints privately a crude list of merbs/alias/tags
 - added !target command. Thank you Nareb for the suggestion, it's a very nice addition!
     ex.: !target Lord Bob 
          !target Lord Bob off
-    - Target merb will be autoswitch off when its tod is updated. 
+    - Target mob will be autoswitch off when its tod is updated. 
     - To list targets: !get targets
 - Added a more sophisticated logging system
 - Changed the !help outputs to be more verbose and (hopefully) clearer.
@@ -147,8 +155,8 @@ Sirken Bot version 0.7 aka "velious" is live: everything since now will be not c
    - Usage example: {!get ntov}
 -  Now Sirken is a little smarter and will interpret better your intentions, hopefully!
    - Example: {!get vilepang}
--  removed !list command. to get all merbs due to spawn, type {!get all}
--  removed !windows command. to get all merbs in window type {!get windows}
+-  removed !list command. to get all mobs due to spawn, type {!get all}
+-  removed !windows command. to get all mobs in window type {!get windows}
 -  minor bug fixes
 -  some aesthetic changes
 ```

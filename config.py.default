@@ -14,10 +14,10 @@ MAX_MESSAGE_LENGTH = 1800
 # Max number of chars to switch from public to private message
 MAX_BROADCAST_LENGTH = 1000
 
-# Hour of the day to broadcast the daily upcoming merb list
+# Hour of the day to broadcast the daily upcoming mob list
 DAILY_HOUR = 7
 
-# Threshold for fuzzy merbs search
+# Threshold for fuzzy mobs search
 FUZZY_THRESHOLD = 85
 FUZZY_GUESSED_THRESHOLD = 65
 

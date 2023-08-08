@@ -1,13 +1,13 @@
 -
 **!WATCH**
 -
-Keep a look on your merbs and be alerted before their spawns/window opens.
+Keep a look on your mobs and be alerted before their spawns/window opens.
 -
-Print all watched merbs
+Print all watched mobs
 ```
 !watch
 ```
-Watch a specified merb and be alerted 30minutes before his eta
+Watch a specified mob and be alerted 30minutes before his eta
 ```
 !watch Lord Bob
 ```

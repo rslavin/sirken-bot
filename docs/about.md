@@ -1,4 +1,5 @@
-:robot: __Sirken Bot v0.81__
-Programmed and maintained by Albero.
-Feel free to send me your discovered bugs, suggestions and in-game plats!
-[GitHub](https://github.com/emmemeno/sirken-bot)
+:robot: __Sirken Bot v0.9.1__
+Originally written by Albero.
+Updated and maintained by rslavin.
+Feel free to send me your discovered bugs and suggestions!
+[GitHub](https://github.com/rslavin/sirken-bot)

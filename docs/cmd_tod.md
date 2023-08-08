@@ -1,9 +1,9 @@
 -
 **!TOD**
 -
-This command updates the time of death, used to calculate the eta of a merb.
+This command updates the time of death; used to calculate the ETA of a mob spawn.
 -
-Simplest way to update a merb (to current date)
+Simplest way to update a mob (to current date)
 ```
 !tod Lord Bob now
 ```

@@ -1,40 +1,39 @@
 {
   "about": [
-  ":robot: __Sirken Bot v0.74__",
+  ":robot: __Sirken Bot v0.9.0__",
   "Original Program by Albero.",
   "Updated and maintained by rslavin.",
   "Feel free to send me your discovered bugs and suggestions!",
   "[GitHub](https://github.com/rslavin/sirken-bot)"
  ],
  "help": [
-  "Hello stranger, I'm Sirken. I give respawn times. If you use me we can do great things together!",
-  "These are commands you can type to interact with me. Remember! I recognize only commands that start with ! ",
+  "These are commands you can type to interact with me. Remember! I recognize only commands that start with `!` ",
   "To get a specific command help, please type !help command",
   "",
   "  [!help]         - Show this help",
-  "  [!get]          - Print merb(s) status",
-  "  [!tod]          - Update the tod of a Merb",
-  "  [!pop]          - Update the pop of a Merb",
+  "  [!get]          - Print mob(s) status",
+  "  [!tod]          - Update the tod of a mob",
+  "  [!pop]          - Update the pop of a mob",
   "  [!earthquake]   - omg omg omg!",
-  "  [!watch]        - Keep an eye on your merbs",
-  "  [!merbs]        - List name, aliases and tags of Merbs",
+  "  [!watch]        - Keep an eye on your mobs",
+  "  [!mobs]        - List name, aliases and tags of mobs",
   "  [!about]        - About Sirken Bot"
  ],
 
  "get": [
-   "Get info about one or more merbs",
+   "Get info about one or more mobs",
   "",
-  ".Syntax: !get {all|windows|tag|merb_name} {info|timezone}",
+  ".Syntax: !get {all|windows|tag|mob_name} {info|timezone}",
   "",
-  "  {all}       - print merbs with a valid eta",
+  "  {all}       - print mobs with a valid eta",
   "",
-  "  {windows}   - print merbs in window",
+  "  {windows}   - print mobs in window",
   "",
-  "  {tag}       - print merbs according to the provided tag",
+  "  {tag}       - print mobs according to the provided tag",
   "",
-  "  {merb_name} - print the specified merb info",
+  "  {mob_name} - print the specified mob info",
   "",
-  "  {info}      - show more details about a single merb",
+  "  {info}      - show more details about a single mob",
   "",
   "  {timezone}  - show times in your timezone (GMT, CET, PST, EST)",
   "",
@@ -44,11 +43,11 @@
 
 
  "tod": [
-  "ToD aka Time of Death will be used to calculate the ETA of the specified merb",
+  "ToD aka Time of Death will be used to calculate the ETA of the specified mob",
   "",
-  ".Syntax: !tod {Merb Name} {Time} {Date} {approx} {timezone}",
+  ".Syntax: !tod {mob Name} {Time} {Date} {approx} {timezone}",
   "",
-  "  {Merb Name}  - mandatory. merb full name or one of its alias - !merbs to list them",
+  "  {mob Name}  - mandatory. mob full name or one of its alias - !mobs to list them",
   "",
   "  {Time}       - mandatory. can be {hh:mm} or {now} or {xx minutes ago}",
   "",
@@ -65,9 +64,9 @@
  "pop" : [
   "Pop date/time is used to calculate ETA only if its newer than ToD",
   "",
-  ".Syntax: !pop {Merb Name} {Time} {Date} {approx} {timezone}",
+  ".Syntax: !pop {mob Name} {Time} {Date} {approx} {timezone}",
   "",
-  "  {Merb Name}  - mandatory. merb full name or one of its alias - !merbs to list them",
+  "  {mob Name}  - mandatory. mob full name or one of its alias - !mobs to list them",
   "",
   "  {Time}       - mandatory. can be {hh:mm} or {now} or {xx minutes ago}",
   "",
@@ -82,7 +81,7 @@
  ],
 
  "earthquake" : [
-  "Earthquake! This powerful command will reset all pop times and will alert all people watching 1 merb at least",
+  "Earthquake! This powerful command will reset all pop times and will alert all people watching 1 mob at least",
   "Use once, go to kill all dragons you can and update ToDs when you are back",
   "",
   ".Syntax: !earthquake {Time} {Date} {timezone}",
@@ -97,27 +96,27 @@
  ],
 
   "watch" : [
-  "When you watch a merb you will be alerted xx minutes before the ETA",
-  "To see a list of watched merbs type !watch without any parameter",
+  "When you watch a mob you will be alerted xx minutes before the ETA",
+  "To see a list of watched mobs type !watch without any parameter",
   "",
-  ".Syntax: !watch {merb_name} {minutes} {off}",
+  ".Syntax: !watch {mob_name} {minutes} {off}",
   "",
-  "  {merb_name}   - merb you are looking for",
+  "  {mob_name}   - mob you are looking for",
   "",
   "  {Minutes}     - optional specify how many minutes you want to be alerted before ETA (30minutes default)",
   "",
-  "  {off}         - optional. if no merb is specified all alarms will be switched off",
+  "  {off}         - optional. if no mob is specified all alarms will be switched off",
   "",
   ".Examples: [!watch scout] :: [!watch lord bob 60] :: [!watch statue off] :: [!watch off]"
  ],
 
  "skip": [
   "certain mobs have the possibility to skip a spawn cycle.",
-  "This command will update the merbs spawn timers",
+  "This command will update the mobs spawn timers",
   "",
-  ".Syntax: !skip {Merb Name} ",
+  ".Syntax: !skip {mob name} ",
   "",
-  "  {Merb Name}  - mandatory. merb full name or one of its alias - !merbs to list them",
+  "  {mob name}  - mandatory. mob full name or one of its alias - !mobs to list them",
   "",
   ".Examples: [!skip lodi] :: [:skip sf]"
  ]

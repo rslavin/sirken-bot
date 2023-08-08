@@ -1,3 +1,5 @@
+import errno
+import os
 import config
 import auth
 import logging
@@ -23,17 +25,17 @@ async def minute_digest():
         await asyncio.sleep(tic)
         now = timeh.now()
 
-        for merb in merbs.merbs:
-            # update merb eta
-            merb.eta = merb.get_eta()
-            minutes_diff = (merb.eta - now).total_seconds() // 60.0
+        for mob in mobs.mobs:
+            # update mob eta
+            mob.eta = mob.get_eta()
+            minutes_diff = (mob.eta - now).total_seconds() // 60.0
 
             for user in watch.users:
                 destination = discord.utils.get(client.get_all_members(), id=user)
-                if watch.check(user, merb.name, minutes_diff) and not merb.in_window():
-                    await destination.send(messagecomposer.prettify(merb.print_short_info(), "CSS")[0])
+                if watch.check(user, mob.name, minutes_diff) and not mob.in_window():
+                    await destination.send(messagecomposer.prettify(mob.print_short_info(), "CSS")[0])
                     logging.debug("ALARM TO %s: %s | ETA: %s | DIFF MINUTES: %s" %
-                                  (user, merb.name, merb.eta, minutes_diff))
+                                  (user, mob.name, mob.eta, minutes_diff))
 
 
 ################################################
@@ -41,7 +43,7 @@ async def minute_digest():
 ################################################
 async def hour_digest():
     # tic every hour
-    tic = 60*60
+    tic = 60 * 60
     while True:
         await asyncio.sleep(tic)
 
@@ -54,11 +56,11 @@ async def hour_digest():
         # tic only one time per day
         # now = timeh.now()
         # if int(now.hour) == config.DAILY_HOUR:
-        #    merbs_print_list = merbs.get_all("CET", "countdown", limit_hours=24)
-        #    if merbs_print_list:
-        #        counter = len(merbs_print_list)
-        #        output_content = messagecomposer.output_list(merbs_print_list)
-        #        pre_content = "Good morning nerds! %d merbs are expected today, %s.\n\n" %\
+        #    mobs_print_list = mobs.get_all("CET", "countdown", limit_hours=24)
+        #    if mobs_print_list:
+        #        counter = len(mobs_print_list)
+        #        output_content = messagecomposer.output_list(mobs_print_list)
+        #        pre_content = "Good morning nerds! %d mobs are expected today, %s.\n\n" %\
         #                      (counter, timeh.now().strftime("%d %b %Y"))
         #        post_content = "\n{Type !hi to start to interact with me}\n"
         #        raw_output = out_h.process(pre_content + output_content + post_content)
@@ -67,8 +69,16 @@ async def hour_digest():
 
 
 def setup_logger(name, log_file, level=logging.INFO):
-
     formatter = logging.Formatter('[%(asctime)s] - %(message)s')
+    try:
+        os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    except OSError as e:
+        if e.errno == errno.EEXIST and os.path.isdir(os.path.dirname(log_file)):
+            pass
+        else:
+            print("[ERROR] Unable to create log file!")
+            print(e)
+            exit(-1)
     handler = logging.FileHandler(log_file)
     handler.setFormatter(formatter)
 
@@ -100,40 +110,42 @@ if __name__ == "__main__":
     intents = discord.Intents.default()
     intents.members = True
 
-    client = commands.Bot(command_prefix="!",  intents=intents)  # Initialise client bot
+    client = commands.Bot(command_prefix="!", intents=intents)  # Initialise client bot
     t_end = timer()
-    logger_sirken.info("Loading Bot. Done in (%s)" % (round(t_end-t_start, 5)))
+    logger_sirken.info("Loading Bot. Done in (%s)" % (round(t_end - t_start, 5)))
 
     # Initialize Auth
     authenticator = auth.Auth(client)
 
-    # Initialize Merbs List
+    # Initialize Mobs List
     t_start = timer()
-    merbs = npc.MerbList(config.FILE_ENTITIES,
-                         config.FILE_TIMERS,
-                         config.FILE_TARGETS,
-                         config.DATE_FORMAT,
-                         config.DATE_FORMAT_PRINT)
-    merbs.order()
+
+    mobs = npc.MobList(config.FILE_ENTITIES,
+                       config.FILE_TIMERS,
+                       config.FILE_TARGETS,
+                       config.DATE_FORMAT,
+                       config.DATE_FORMAT_PRINT)
+    mobs.order()
     t_end = timer()
-    logger_sirken.info("Loading Merbs. Done in %s seconds" % (round(t_end-t_start, 5)))
+    logger_sirken.info("Loading mobs. Done in %s seconds" % (round(t_end - t_start, 5)))
 
     # Load Helper
     t_start = timer()
     helper = helper.Helper(config.HELP_DIR)
     t_end = timer()
-    logger_sirken.info("Loading Help. Done in %s seconds" % (round(t_end-t_start, 5)))
+    logger_sirken.info("Loading Help. Done in %s seconds" % (round(t_end - t_start, 5)))
 
     # Load Watcher
     t_start = timer()
     watch = watch.Watch(config.FILE_WATCH)
     t_end = timer()
-    logger_sirken.info("Loading Watcher. Done in %s seconds" % (round(t_end-t_start, 5)))
+    logger_sirken.info("Loading Watcher. Done in %s seconds" % (round(t_end - t_start, 5)))
 
     # Initialize Sirken Commands
-    sirken_cmds = SirkenCommands(client, authenticator, merbs, helper, watch)
+    sirken_cmds = SirkenCommands(client, authenticator, mobs, helper, watch)
     t_end = timer()
-    logger_sirken.info("Loading IO. Done in %s seconds" % (round(t_end-t_start, 5)))
+    logger_sirken.info("Loading IO. Done in %s seconds" % (round(t_end - t_start, 5)))
+
 
     @client.event
     async def on_ready():
@@ -169,11 +181,12 @@ if __name__ == "__main__":
                     await leave_guild(authenticator.discord_guilds)
 
             # send PM Alerts
-            if 'merb_alert' in messages_output:
-                await send_pop_alerts(messages_output['merb_alert'], messages_output["content"])
+            if 'mob_alert' in messages_output:
+                await send_pop_alerts(messages_output['mob_alert'], messages_output["content"])
             # send EQ Alerts
             if 'earthquake' in messages_output:
                 await send_eq_alert(messages_output['earthquake'])
+
 
     # Leave Guild
     @client.event
@@ -182,12 +195,14 @@ if __name__ == "__main__":
             logger_sirken.info("Leaving %s server" % guild.name)
             await guild.leave()
 
+
     # Send Spam to Broadcast Channel
     @client.event
     async def send_spam(message, channels):
         for channel in channels:
             destination = client.get_channel(channel)
             await destination.send(message)
+
 
     # Send Earthquake Messages
     @client.event
@@ -200,15 +215,17 @@ if __name__ == "__main__":
         #    logging.info("EARTHQUAKE!")
         pass
 
+
     # Send Pop Message
     @client.event
-    async def send_pop_alerts(merb: npc.Merb, message):
+    async def send_pop_alerts(mob: npc.Mob, message):
         # for user in watch.users:
         #    destination = discord.utils.get(client.get_all_members(), id=user)
-        #    if merb.name in watch.users[user]:
+        #    if mob.name in watch.users[user]:
         #        await client.send_message(destination, messagecomposer.prettify(message, "CSS"))
-        #        logging.info("SEND ALERT. %s pop TO: %s" % (merb.name, user))
+        #        logging.info("SEND ALERT. %s pop TO: %s" % (mob.name, user))
         pass
+
 
     # Run the Bot
     client.loop.create_task(minute_digest())

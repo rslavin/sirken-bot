@@ -14,11 +14,11 @@ logger = logging.getLogger("Input")
 
 class SirkenCommands:
 
-    def __init__(self, d_client, my_auth, merbs_list, my_help, watcher):
+    def __init__(self, d_client, my_auth, mobs_list, my_help, watcher):
         self.d_client = d_client
         self.authenticator = my_auth
-        self.merbs = merbs_list
-        self.lp = line_parser.LineParser(merbs_list)
+        self.mobs = mobs_list
+        self.lp = line_parser.LineParser(mobs_list)
         self.helper = my_help
         self.watch = watcher
         self.input_author = None
@@ -45,13 +45,13 @@ class SirkenCommands:
             "about": self.cmd_about,  # About
             "help": self.cmd_help,  # Help
             "hi": self.cmd_help,
-            "get": self.cmd_get,  # Get a single Merb
-            "tod": self.cmd_tod,  # Update a Merb Status
+            "get": self.cmd_get,  # Get a single mob
+            "tod": self.cmd_tod,  # Update a mob Status
             "pop": self.cmd_pop,  # Set pop time to now
-            "watch": self.cmd_watch,  # Watch a merb
+            "watch": self.cmd_watch,  # Watch a mob
             "target": self.cmd_target,
             "earthquake": self.cmd_earthquake,  # Reset all pop times to now
-            "merbs": self.cmd_merbs,  # Get Aliases
+            "mobs": self.cmd_mobs,  # Get Aliases
             "roles": self.cmd_roles,
             "setrole": self.cmd_set_role,
             "users": self.cmd_users,
@@ -97,37 +97,37 @@ class SirkenCommands:
         output_channel = self.input_channel
         output_broadcast = False
 
-        # print merbs in target
+        # print mobs in target
         if "target" in self.lp.key_words:
             output_content = "NEXT TARGETS\n"
-            output_content += "=" * (len(output_content)-1) + "\n\n"
-            output_content += messagecomposer.output_list(self.merbs.get_all_targets())
-        # print merbs by tag
+            output_content += "=" * (len(output_content) - 1) + "\n\n"
+            output_content += messagecomposer.output_list(self.mobs.get_all_targets())
+        # print mobs by tag
         elif self.lp.tag:
             output_content = "#%s\n" % self.lp.tag.upper()
             output_content += "=" * len(self.lp.tag) + "\n\n"
-            output_content += messagecomposer.output_list(self.merbs.get_all_by_tag(self.lp.tag))
+            output_content += messagecomposer.output_list(self.mobs.get_all_by_tag(self.lp.tag))
 
-        # print only merbs in windows
+        # print only mobs in windows
         elif "window" in self.lp.key_words:
-            output_content = "MERBS IN WINDOW\n"
+            output_content = "MOBS IN WINDOW\n"
             output_content += "=" * len(output_content) + "\n\n"
-            output_content += messagecomposer.output_list(self.merbs.get_all_window())
+            output_content += messagecomposer.output_list(self.mobs.get_all_window())
 
-        # print a list of all merbs
+        # print a list of all mobs
         elif "all" in self.lp.key_words:
-            output_content = messagecomposer.output_list(self.merbs.get_all(self.lp.timezone, 'countdown'))
+            output_content = messagecomposer.output_list(self.mobs.get_all(self.lp.timezone, 'countdown'))
 
-        # print single merb
-        elif self.lp.merb_found:
+        # print single mob
+        elif self.lp.mob_found:
             if "info" in self.lp.key_words:
-                output_content = self.lp.merb_found.print_long_info(self.lp.timezone)
+                output_content = self.lp.mob_found.print_long_info(self.lp.timezone)
             else:
-                output_content = self.lp.merb_found.print_short_info()
+                output_content = self.lp.mob_found.print_short_info()
 
-        # no parameter recognized but a guessed merb
-        elif self.lp.merb_guessed:
-            output_content = "Merb not found. Did you mean %s?" % self.lp.merb_guessed.name
+        # no parameter recognized but a guessed mob
+        elif self.lp.mob_guessed:
+            output_content = "Mob not found. Did you mean %s?" % self.lp.mob_guessed.name
             output_channel = self.input_author
 
         # no parameter recognized
@@ -148,16 +148,16 @@ class SirkenCommands:
         if "sirken" in self.lp.key_words:
             return self.leave_all_guilds()
         else:
-            return self.update_merb("tod")
+            return self.update_mob("tod")
 
     ######################
     # UPDATE POP TIME/DATE
     ######################
     @auth.cmd("pop")
     def cmd_pop(self):
-        return self.update_merb("pop")
+        return self.update_mob("pop")
 
-    def update_merb(self, mode="tod"):
+    def update_mob(self, mode="tod"):
         output_channel = self.input_channel
         output_broadcast = False
 
@@ -168,38 +168,38 @@ class SirkenCommands:
             approx = 0
             approx_output = "~"
 
-        # If there is a Merb
-        if self.lp.merb_found:
-            #Check if its skip
+        # If there is a mob
+        if self.lp.mob_found:
+            # Check if its skip
             if mode == "skip":
-                self.lp.merb_found.update_skip(timeh.now(), str(self.input_author))
-                self.merbs.save_timers()
-                output_date = timeh.change_tz(timeh.naive_to_tz( self.lp.merb_found.eta, "UTC"),
+                self.lp.mob_found.update_skip(timeh.now(), str(self.input_author))
+                self.mobs.save_timers()
+                output_date = timeh.change_tz(timeh.naive_to_tz(self.lp.mob_found.eta, "UTC"),
                                               self.lp.timezone)
                 output_content = "[%s] skipped [%s]! Next cycle [%s] starts at: {%s %s} - %ssigned by %s" % \
-                                 (self.lp.merb_found.name,
-                                  self.lp.merb_found.current_window -1,
-                                  self.lp.merb_found.current_window,
+                                 (self.lp.mob_found.name,
+                                  self.lp.mob_found.current_window - 1,
+                                  self.lp.mob_found.current_window,
                                   output_date.strftime(config.DATE_FORMAT_PRINT),
                                   self.lp.timezone,
                                   approx_output,
                                   self.input_author.name)
 
-              #  output_broadcast = self.get_broadcast_channels()
+            #  output_broadcast = self.get_broadcast_channels()
             # Check if we have a date
             elif self.lp.my_date:
                 # UPDATE THE TOD
                 if mode == "tod":
-                    self.lp.merb_found.update_tod(self.lp.my_date, str(self.input_author), approx)
+                    self.lp.mob_found.update_tod(self.lp.my_date, str(self.input_author), approx)
                 if mode == "pop":
-                    self.lp.merb_found.update_pop(self.lp.my_date, str(self.input_author))
-          
-                # save merbs
-                self.merbs.save_timers()
+                    self.lp.mob_found.update_pop(self.lp.my_date, str(self.input_author))
+
+                # save mobs
+                self.mobs.save_timers()
                 output_date = timeh.change_tz(timeh.naive_to_tz(self.lp.my_date, "UTC"),
                                               self.lp.timezone)
                 output_content = "[%s] updated! New %s: {%s %s} - %ssigned by %s" % \
-                                 (self.lp.merb_found.name,
+                                 (self.lp.mob_found.name,
                                   mode,
                                   output_date.strftime(config.DATE_FORMAT_PRINT),
                                   self.lp.timezone,
@@ -212,14 +212,14 @@ class SirkenCommands:
                 output_content = errors.error_param(self.lp.cmd, "Time Syntax Error. ")
                 output_channel = self.input_author
 
-        # If there is a guessed merb
-        elif self.lp.merb_guessed:
-            output_content = "Merb not found. Did you mean %s?" % self.lp.merb_guessed.name
+        # If there is a guessed mob
+        elif self.lp.mob_guessed:
+            output_content = "Mob not found. Did you mean %s?" % self.lp.mob_guessed.name
             output_channel = self.input_author
-        # If no merb
+        # If no mob
         else:
             output_channel = self.input_author
-            output_content = errors.error_merb_not_found()
+            output_content = errors.error_mob_not_found()
 
         return {"destination": output_channel,
                 "content": messagecomposer.prettify(output_content, "CSS"),
@@ -233,7 +233,7 @@ class SirkenCommands:
         output_channel = self.input_author
         output_broadcast = False
 
-        if self.lp.merb_found:
+        if self.lp.mob_found:
             # search for minutes param
             minutes = 30
             reg_min = re.search(r"\b(\d+)\b", self.lp.param)
@@ -242,32 +242,32 @@ class SirkenCommands:
             off = False
             if "off" in self.lp.key_words:
                 off = True
-                output_content = "Track OFF for [%s]" % self.lp.merb_found.name
+                output_content = "Track OFF for [%s]" % self.lp.mob_found.name
             else:
                 output_content = "Track ON for [%s], I will alert you %d before ETA" % \
-                                 (self.lp.merb_found.name, minutes)
+                                 (self.lp.mob_found.name, minutes)
 
-            self.watch.switch(self.input_author.id, self.lp.merb_found.name, minutes, off)
+            self.watch.switch(self.input_author.id, self.lp.mob_found.name, minutes, off)
 
-        # If there is a guessed merb
-        elif self.lp.merb_guessed:
-            output_content = "Merb not found. Did you mean %s?" % self.lp.merb_guessed.name
+        # If there is a guessed mob
+        elif self.lp.mob_guessed:
+            output_content = "Mob not found. Did you mean %s?" % self.lp.mob_guessed.name
             output_channel = self.input_author
 
-        # if no merb is passed but OFF parameter is, toggle off all alarms
+        # if no mob is passed but OFF parameter is, toggle off all alarms
         elif "off" in self.lp.key_words:
             self.watch.all_off(self.input_author.id)
             output_content = "All alarms are set to OFF"
 
-        # If not params are passed get the full list of tracked merbs
+        # If not params are passed get the full list of tracked mobs
         else:
-            tracked_merbs = self.watch.get_all(self.input_author.id)
-            if not tracked_merbs:
-                output_content = "No merbs tracked :("
+            tracked_mobs = self.watch.get_all(self.input_author.id)
+            if not tracked_mobs:
+                output_content = "No mobs tracked :("
             else:
                 output_content = ""
-                for tmerb in tracked_merbs:
-                    output_content += '[%s] will alert %d minutes before ETA\n' % (tmerb, tracked_merbs[tmerb])
+                for tmob in tracked_mobs:
+                    output_content += '[%s] will alert %d minutes before ETA\n' % (tmob, tracked_mobs[tmob])
 
         return {"destination": output_channel,
                 "content": messagecomposer.prettify(output_content, "CSS"),
@@ -281,19 +281,19 @@ class SirkenCommands:
         output_channel = self.input_channel
         output_broadcast = False
 
-        if self.lp.merb_found:
+        if self.lp.mob_found:
             if "off" in self.lp.key_words:
-                self.lp.merb_found.target = False
-                output_content = "Target OFF for [%s] " % self.lp.merb_found.name
+                self.lp.mob_found.target = False
+                output_content = "Target OFF for [%s] " % self.lp.mob_found.name
             else:
-                self.lp.merb_found.target = True
-                output_content = "Target ON for [%s]" % self.lp.merb_found.name
+                self.lp.mob_found.target = True
+                output_content = "Target ON for [%s]" % self.lp.mob_found.name
             output_content += "- signed by %s" % self.input_author.name
-            self.merbs.save_targets()
+            self.mobs.save_targets()
             output_broadcast = self.get_broadcast_channels()
-        # If there is a guessed merb
-        elif self.lp.merb_guessed:
-            output_content = "Merb not found. Did you mean %s?" % self.lp.merb_guessed.name
+        # If there is a guessed mob
+        elif self.lp.mob_guessed:
+            output_content = "Mob not found. Did you mean %s?" % self.lp.mob_guessed.name
             output_channel = self.input_author
         else:
             output_content = errors.error_param(self.lp.cmd, "Missing Parameter. ")
@@ -312,10 +312,10 @@ class SirkenCommands:
         output_broadcast = False
 
         if self.lp.my_date:
-            for merb in self.merbs.merbs:
-                merb.update_pop(self.lp.my_date, str(self.input_author))
+            for mob in self.mobs.mobs:
+                mob.update_pop(self.lp.my_date, str(self.input_author))
 
-            self.merbs.save_timers()
+            self.mobs.save_timers()
 
             output_date = timeh.change_tz(timeh.naive_to_tz(self.lp.my_date, "UTC"), self.lp.timezone)
             output_content = "Earthquake! All pop times updated [%s] %s, signed by %s" % \
@@ -334,11 +334,11 @@ class SirkenCommands:
                 'broadcast': output_broadcast}
 
     ########################
-    # PRINT ALIASES OF MERBS
+    # PRINT ALIASES OF MOBS
     ########################
-    @auth.cmd("merbs")
-    def cmd_merbs(self):
-        output_content = messagecomposer.output_list(self.merbs.get_all_meta())
+    @auth.cmd("mobs")
+    def cmd_mobs(self):
+        output_content = messagecomposer.output_list(self.mobs.get_all_meta())
 
         return {"destination": self.input_author,
                 "content": messagecomposer.prettify(output_content, "CSS"),
@@ -364,10 +364,10 @@ class SirkenCommands:
             converted_role = self.authenticator.roles.convert_discord_role_into_bot_role(str(d_role.id))
 
             output_discord_roles_content += "- [%s server] %s (%d) -> %s\n" % \
-                              (d_role.guild,
-                               d_role.name,
-                               d_role.id,
-                               converted_role)
+                                            (d_role.guild,
+                                             d_role.name,
+                                             d_role.id,
+                                             converted_role)
 
         output_bot_roles_content = "\nBOT ROLES\n=========\n"
         for b_role in self.authenticator.roles.bot_roles:
@@ -416,9 +416,9 @@ class SirkenCommands:
                 output_content = "Bot Role not found! Type !roles to list them"
             else:
                 self.authenticator.roles.assign_discord_role_to_bot_role(str(d_role.id), b_role)
-                output_content += "Discord Role [%s] {%s} assigned to Bot Role [%s]\n\n" %\
+                output_content += "Discord Role [%s] {%s} assigned to Bot Role [%s]\n\n" % \
                                   (d_role.name, d_role.id, b_role)
-                output_content += "Commands for this new role:\n%s" %\
+                output_content += "Commands for this new role:\n%s" % \
                                   self.authenticator.acl.which_permissions_any([b_role], "command")
                 self.authenticator.reload_discord_roles()
                 self.authenticator.reload_discord_users()
@@ -427,7 +427,7 @@ class SirkenCommands:
             output_content = errors.error_param(self.lp.cmd, "Missing Parameter. ")
 
         return {"destination": output_channel,
-                "content":  messagecomposer.prettify(output_content, "CSS"),
+                "content": messagecomposer.prettify(output_content, "CSS"),
                 'broadcast': output_broadcast}
 
     ########################
@@ -510,10 +510,10 @@ class SirkenCommands:
             if not self.input_channel.id == channel:
                 broadcast_channels.append(channel)
         return broadcast_channels
-    
+
     ######################
-    # MERB SKIPPED UPDATE TIMERS
+    # MOB SKIPPED UPDATE TIMERS
     ######################
     @auth.cmd("skip")
     def cmd_skip(self):
-        return self.update_merb("skip")
+        return self.update_mob("skip")

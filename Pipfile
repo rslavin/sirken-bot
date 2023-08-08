@@ -9,8 +9,9 @@ verify_ssl = true
 pytz = "*"
 python-levenshtein = "*"
 fuzzywuzzy = "*"
-discord-py = "*"
+"discord.py" = "==1.7.1"
 miracle-acl = "*"
+discord = {py = "*"}
 
 [requires]
 python_version = "3.6"

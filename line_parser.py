@@ -7,22 +7,20 @@ import timehandler as timeh
 
 class LineParser:
 
-    def __init__(self, merbs_list):
-        # list of common key words used
+    def __init__(self, mobs_list):
+        # list of common keywords used
         self.key_words = list()
-        self.merbs_list = merbs_list
+        self.mobs_list = mobs_list
         self.param = None
         self.cmd = None
-        self.merb_found = None
-        self.merb_guessed = None
+        self.mob_found = None
+        self.mob_guessed = None
         self.timezone = None
         self.days_back = 0
         self.parsed_time = None
         self.parsed_date = None
         self.my_date = None
         self.tag = None
-
-
 
     def process(self, line):
         if not line:
@@ -79,9 +77,9 @@ class LineParser:
             if mins_ago:
                 self.my_date = timeh.from_mins_ago(mins_ago)
             if not self.my_date:
-                self.my_date = timeh.assemble_date(self.parsed_time, self.parsed_date, self.timezone,self.days_back)
-            # Find Merbs
-            self.find_merb()
+                self.my_date = timeh.assemble_date(self.parsed_time, self.parsed_date, self.timezone, self.days_back)
+            # find mobs
+            self.find_mob()
 
         return True
 
@@ -100,9 +98,9 @@ class LineParser:
             timezone = reg.group(1).upper()
             if timezone == "PST" or timezone == "PDT":
                 timezone = "US/Pacific"
-            if timezone == "CST"or timezone == "CDT":
+            if timezone == "CST" or timezone == "CDT":
                 timezone = "US/Central"
-            if timezone == "EST"or timezone == "EDT":
+            if timezone == "EST" or timezone == "EDT":
                 timezone = "US/Eastern"
             self.timezone = timezone
             # Strip the parameter
@@ -237,7 +235,7 @@ class LineParser:
             return False
 
     def find_tag(self):
-        tags = r"\b(" + self.merbs_list.get_re_tags().lower() + r")\b"
+        tags = r"\b(" + self.mobs_list.get_re_tags().lower() + r")\b"
         reg = re.search(tags, self.param.lower())
         if reg:
             self.tag = reg.group(0)
@@ -248,25 +246,25 @@ class LineParser:
         else:
             return False
 
-    def find_merb(self):
+    def find_mob(self):
         result = {}
-        for merb in self.merbs_list.merbs:
+        for mob in self.mobs_list.mobs:
 
-            hey = fuzz.token_set_ratio(self.param, merb.name)
-            result[merb] = hey
+            hey = fuzz.token_set_ratio(self.param, mob.name)
+            result[mob] = hey
 
-            for alias in merb.alias:
+            for alias in mob.alias:
                 sub_hey = fuzz.token_set_ratio(self.param, alias)
-                if sub_hey > result[merb]:
-                    result[merb] = sub_hey
+                if sub_hey > result[mob]:
+                    result[mob] = sub_hey
 
         sorted_result = sorted(result.items(), key=operator.itemgetter(1), reverse=True)
-        first_result_merb = next(iter(sorted_result))[0]
+        first_result_mob = next(iter(sorted_result))[0]
         first_result_value = next(iter(sorted_result))[1]
         if first_result_value >= config.FUZZY_THRESHOLD:
-            self.merb_found = first_result_merb
+            self.mob_found = first_result_mob
         if first_result_value >= config.FUZZY_GUESSED_THRESHOLD:
-            self.merb_guessed = first_result_merb
+            self.mob_guessed = first_result_mob
 
     def polish_line(self):
         self.param = re.sub(' +', ' ', self.param)
@@ -281,5 +279,5 @@ class LineParser:
         self.parsed_date = None
         self.my_date = None
         self.tag = None
-        self.merb_found = None
-        self.merb_guessed = None
+        self.mob_found = None
+        self.mob_guessed = None

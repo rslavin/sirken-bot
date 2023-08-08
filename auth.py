@@ -46,7 +46,7 @@ class BotRoles:
             roles.append(role)
         return roles
 
-    # Convert Discord Role In Bot Roles Using localy dict bot_roles_discord
+    # Convert Discord Role In Bot Roles Using locally dict bot_roles_discord
     def convert_discord_role_into_bot_role(self, discord_id_role):
         output_role = "guest"
         for b_role, d_roles in self.bot_roles_discord.items():

@@ -1,30 +1,30 @@
 -
 **!GET**
 -
-This command will print a countdown/info about one or more merbs in the current channel.
-If you don't want to spam public channels, use it via private message
+This command will print a countdown/info about one or more mobs in the current channel.
+If you don't want to spam public channels, use it via private message.
 -
-Print all merbs due to spawn:
+Print all mobs due to spawn:
 ```
 !get all
 ```
-Print all target merbs:
+Print all target mobs:
 ```
 !get targets
 ```
-Print all merbs in window
+Print all mobs in window
 ```
 !get windows
 ```
-Print all merbs of the specified tag
+Print all mobs of the specified tag
 ```
 !get ntov
 ```
-Get a specified merb
+Get a specified mob
 ```
 !get Lord Bob
 ```
-Get more info about a specified merb
+Get more info about a specified mob
 ```
 !get Lord Bob info
 ```

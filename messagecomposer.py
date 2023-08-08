@@ -1,4 +1,3 @@
-from discord.utils import cached_property
 import timehandler as timeh
 import config
 
@@ -28,7 +27,6 @@ def message_cut(input_text: str, limit: int):
 
 
 def prettify(text: str, my_type="BLOCK"):
-
     output_text = list()
     prefix = postfix = ""
     cut_text = message_cut(text, config.MAX_MESSAGE_LENGTH)
@@ -53,7 +51,7 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, curr
     postfix = ""
     prefix = ""
     output = "[" + name + "] "
-    approx = " "
+    approx = ""
     window_str = ""
     if accuracy <= 0 or spawns > 6:
         approx = "~ "
@@ -75,14 +73,15 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, curr
             output += "%sin window until %s " % (approx, timeh.countdown(now, eta))
     if target:
         postfix += ".target"
-    
+
     if current_window > 0:
-        window_str += "current cycle is %s" % current_window    
-    
-    return prefix + output + postfix + window_str +"\n"
+        window_str += "current cycle is %s" % current_window
+
+    return prefix + output + postfix + window_str + "\n"
 
 
-def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tags, window_start, window_end, accuracy, eta, current_window, windows):
+def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tags, window_start, window_end, accuracy,
+           eta, current_window, windows):
     output = "%s\n" % name
     output += "=" * len(name) + "\n\n"
     approx = ""
@@ -106,8 +105,8 @@ def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tag
     if len(windows) > 0:
         output += "{CURRENT WINDOW} [%s]\n" \
                   "{WINDOW CONFIG}  [%s]\n" \
-              % (current_window, windows)   
-    
+                  % (current_window, windows)
+
     output += "{SIGNED TOD BY} [%s] %s\n" \
               "{SIGNED POP BY} [%s]\n" \
               "{ETA}           [%s]\n" \
@@ -116,27 +115,27 @@ def detail(name, tod, pop, signed_tod, signed_pop, respawn_time, plus_minus, tag
 
 
 def output_list(content: list):
-        output = ""
-        for line in content:
-            output += line
-        if output == "":
-            output = "Empty! :("
-        return output
+    output = ""
+    for line in content:
+        output += line
+    if output == "":
+        output = "Empty! :("
+    return output
 
 
-def meta(name, merb_alias, merb_tag):
+def meta(name, mob_alias, mob_tag):
     output = "[%s] " % name
-    for alt in merb_alias:
+    for alt in mob_alias:
         output += "{%s} " % alt
-    for tag in merb_tag:
+    for tag in mob_tag:
         output += "#%s " % tag
     output += "\n"
     return output
 
 
-def alias(name, merb_alias):
+def alias(name, mob_alias):
     output = "[%s] " % name
-    for alt in merb_alias:
+    for alt in mob_alias:
         output += "{%s} " % alt
     output += "\n"
     return output
