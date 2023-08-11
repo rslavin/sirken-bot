@@ -5,14 +5,16 @@ Interactive discord bot who stores and updates times of death, pops and watch mo
 
 ### LIST OF COMMANDS
 ```
-  [!help]         - Show the help
-  [!get]          - Show the status of a mob 
-  [!tod]          - Update the ToD of a mob
-  [!pop]          - A mob is popped
-  [!earthquake]   - omg omg omg (be careful, will reset all pop date/time!)
-  [!watch]        - Keep an eye on your mobs
-  [!mobs]        - List name and aliases of supported mobs
-  [!about]        - About Sirken Bot
+  !help                   - Show this help message
+  !get <mob>              - Show the status of a mob 
+  !tod <mob> <time>       - Update the ToD of a mob
+  !pop <mob> <time>       - A mob is popped
+  !earthquake <time>      - Resets all ToD timers to <time>
+  !watch [mob] [options]  - Get alerts for upcoming spawns
+  !mobs                   - List name and aliases of supported mobs
+  !target <mob>           - Set a mob target
+  !about                  - Print info about this bot
+  !skip <name>            - A mob skipped is spawn cycle
 ```
 
 ### !get
