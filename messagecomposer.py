@@ -72,7 +72,8 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, curr
             postfix = "## "
             output += "%sin window until %s " % (approx, timeh.countdown(now, eta))
     if last_tod:
-        output += "- last updated: %s (approximately %s spawns since then)" % (last_tod, spawns)
+        plural = "s" if spawns > 1 else ""
+        output += "- last updated: %s (approximately %s spawn%s since then)" % (last_tod, plural, spawns)
     if target:
         postfix += ".target"
 
