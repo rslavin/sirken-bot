@@ -46,7 +46,7 @@ def prettify(text: str, my_type="BLOCK"):
     return output_text
 
 
-def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, current_window):
+def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, current_window, last_tod):
     now = timeh.now()
     postfix = ""
     prefix = ""
@@ -71,6 +71,8 @@ def time_remaining(name, eta, plus_minus, window, spawns, accuracy, target, curr
             prefix = ""
             postfix = "## "
             output += "%sin window until %s " % (approx, timeh.countdown(now, eta))
+    if last_tod:
+        output += "- last updated: %s (approximately %s spawns since then)" % (last_tod, spawns)
     if target:
         postfix += ".target"
 

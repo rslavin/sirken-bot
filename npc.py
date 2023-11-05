@@ -150,8 +150,9 @@ class Mob:
 
     def print_short_info(self):
         self.eta = self.get_eta()
-        return messagecomposer.time_remaining(self.name, self.eta, self.plus_minus, self.window,
-                                              self.spawns, self.accuracy, self.target, self.current_window)
+        last_update = self.tod if self.recurring else None
+        return messagecomposer.time_remaining(self.name, self.eta, self.plus_minus, self.window, self.spawns,
+                                              self.accuracy, self.target, self.current_window, last_update)
 
     def print_long_info(self, timezone):
         self.eta = self.get_eta()
