@@ -56,7 +56,7 @@ async def hour_digest():
         # tic only one time per day
         # now = timeh.now()
         # if int(now.hour) == config.DAILY_HOUR:
-        #    mobs_print_list = mobs.get_all("CET", "countdown", limit_hours=24)
+        #    mobs_print_list = mobs.get_all("EST", "countdown", limit_hours=24)
         #    if mobs_print_list:
         #        counter = len(mobs_print_list)
         #        output_content = messagecomposer.output_list(mobs_print_list)

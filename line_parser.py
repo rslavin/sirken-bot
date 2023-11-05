@@ -92,7 +92,7 @@ class LineParser:
             self.polish_line()
 
     def set_tz(self):
-        self.timezone = "CET"
+        self.timezone = "EST"
         reg = re.search(r"\b(pst|pdt|cst|cdt|est|edt|cet|gmt)\b", self.param)
         if reg:
             timezone = reg.group(1).upper()

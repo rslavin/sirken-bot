@@ -44,7 +44,7 @@ def convert24(time, meridian):
     return time
 
 
-def assemble_date(time_in, date_in, timezone='CET', days_back=0):
+def assemble_date(time_in, date_in, timezone='EST', days_back=0):
     # time is mandatory
     if not time_in:
         return False
@@ -86,7 +86,7 @@ def tz_to_naive(tz_date):
     return tz_date.replace(tzinfo=None)
 
 
-def change_tz(mydate, target_timezone="CET"):
+def change_tz(mydate, target_timezone="EST"):
     tz_convert_to = pytz.timezone(target_timezone)
     return mydate.astimezone(tz_convert_to)
 
