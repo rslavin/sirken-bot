@@ -123,7 +123,7 @@ class SirkenCommands:
             if "info" in self.lp.key_words:
                 output_content = self.lp.mob_found.print_long_info(self.lp.timezone)
             else:
-                output_content = self.lp.mob_found.print_short_info()
+                output_content = self.lp.mob_found.print_short_info(timezone=self.lp.timezone)
 
         # no parameter recognized but a guessed mob
         elif self.lp.mob_guessed:
