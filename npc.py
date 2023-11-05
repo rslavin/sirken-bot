@@ -151,8 +151,10 @@ class Mob:
     def print_short_info(self, timezone="EST"):
         self.eta = self.get_eta()
         tod_tz = timeh.change_naive_to_tz(self.tod, timezone) if self.recurring else None
+        if tod_tz:
+            tod_tz = tod_tz.strftime(self.d_print)
         return messagecomposer.time_remaining(self.name, self.eta, self.plus_minus, self.window, self.spawns,
-                                              self.accuracy, self.target, self.current_window, tod_tz.strftime(self.d_print))
+                                              self.accuracy, self.target, self.current_window, tod_tz)
 
     def print_long_info(self, timezone):
         self.eta = self.get_eta()
