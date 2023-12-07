@@ -3,3 +3,4 @@ resources/watch.json
 resources/timers.json
 resources/roles.json
 logs/
+resources/targets.json
