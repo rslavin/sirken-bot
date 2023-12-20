@@ -96,11 +96,11 @@ class Mob:
     def update_skip(self, skip_time, author):
         if len(self.windows) > 0 and self.current_window + 1 <= len(self.windows):
             self.signed_tod = author
-            self.window = self.get_window(skip_time, True)
             self.eta = self.get_eta()
             self.target = False
             self.plus_minus = self.windows[self.current_window]
             self.current_window = self.current_window + 1
+            self.window = self.get_window(skip_time, True)
         else:
             return {"Trying to skip last cycle"}
 
